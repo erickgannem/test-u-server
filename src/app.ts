@@ -3,6 +3,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 
 import routes from './routes'
+import errorMiddleware from './middlewares/errorMiddleware'
 
 export default class App {
   server: express.Application
@@ -22,5 +23,7 @@ export default class App {
     this.server.use(routes)
   }
 
-  errors () {}
+  errors () {
+    this.server.use(errorMiddleware)
+  }
 }
