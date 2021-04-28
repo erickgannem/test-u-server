@@ -1,6 +1,7 @@
 import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
+import dotenv from 'dotenv'
 
 import routes from './routes'
 import errorMiddleware from './middlewares/errorMiddleware'
@@ -8,6 +9,8 @@ import errorMiddleware from './middlewares/errorMiddleware'
 export default class App {
   server: express.Application
   constructor () {
+    dotenv.config({})
+
     this.server = express()
     this.middlewares()
     this.routes()
