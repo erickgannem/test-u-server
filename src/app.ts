@@ -10,7 +10,6 @@ export default class App {
   server: express.Application
   constructor () {
     dotenv.config({})
-
     this.server = express()
     this.middlewares()
     this.routes()

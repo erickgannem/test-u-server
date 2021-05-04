@@ -1,6 +1,6 @@
 import App from '../../src/app'
 
-describe('App file', () => {
+describe('App', () => {
   const app = new App()
   test('A instance of App exists', () => {
     expect(app).toBeInstanceOf(App)
