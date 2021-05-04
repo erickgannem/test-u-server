@@ -24,5 +24,9 @@ export default interface IStudent extends mongoose.Document {
   premium: {
     type: string;
     default: boolean
-  }
+  },
+  appliedExams: {
+    type: any,
+    default: Array<any>
+  } // Must specify type
 }

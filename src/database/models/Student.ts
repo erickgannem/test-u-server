@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 import IStudent from '../interfaces/IStudent'
 
 const { Types } = Schema
-const { String, Boolean } = Types
+const { String, Boolean, Mixed } = Types
 
 const studentSchema = new Schema({
   name: {
@@ -28,7 +28,11 @@ const studentSchema = new Schema({
   premium: {
     type: Boolean,
     default: false
-  }
+  },
+  appliedExams: {
+    type: Mixed,
+    default: []
+  } // Must specify type
 })
 
 export default model<IStudent>('student', studentSchema)
