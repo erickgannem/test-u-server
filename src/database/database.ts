@@ -1,19 +1,19 @@
+import mongoose from 'mongoose'
 import DBOptions from './interfaces/DBOptions'
-import connect from './utils/connect'
 
-const { DB_NAME, DB_USER, DB_PASSWORD } = process.env
+export default class Database {
+  async connect ({ username, password, name }: DBOptions) {
+    const env = process.env.NODE_ENV
 
-const db = {};
-
-(async function () {
-  if (DB_NAME && DB_USER && DB_PASSWORD) {
-    const options: DBOptions = {
-      name: DB_NAME,
-      username: DB_USER,
-      password: DB_PASSWORD
+    if (env === 'test' || env === 'development') {
+      return await mongoose.connect(
+        `mongodb://localhost:27017/${name}`,
+        { useNewUrlParser: true, useUnifiedTopology: true }
+      )
     }
-    await connect(options)
+    return await mongoose.connect(
+      `mongodb+srv://${username}:${password}@cluster0.ssxoo.mongodb.net/${name}?retryWrites=true&w=majority`,
+      { useNewUrlParser: true, useUnifiedTopology: true }
+    )
   }
-})()
-
-export { db }
+}
