@@ -8,11 +8,8 @@ describe('Database', () => {
       username: 'john',
       password: '123'
     }
-    try {
-      await connect(options)
-    } catch (err) {
-      expect(err.message).toMatch('Authentication failed')
-    }
+
+    return connect(options).then(r => expect(r).toBeTruthy()).catch(err => expect(err).toMatch('Auth'))
   })
 })
 
