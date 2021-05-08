@@ -1,15 +1,17 @@
-import connect from '../../src/database/utils/connect'
+import Database from '../../src/database'
 import DBOptions from '../../src/database/interfaces/DBOptions'
 
 describe('Database', () => {
-  test('should fail if invalid options provided', async () => {
-    const options: DBOptions = {
-      name: 'test-db',
-      username: 'john',
+  const { connect } = new Database()
+
+  test('should fail if invalid credentials are provided', async () => {
+    const mockOptions: DBOptions = {
+      name: 'database',
+      username: 'user',
       password: '123'
     }
 
-    return connect(options).then(r => expect(r).toBeTruthy()).catch(err => expect(err).toMatch('Auth'))
+    await expect(connect(mockOptions)).rejects.toMatchObject({ code: 8000 })
   })
 })
 
