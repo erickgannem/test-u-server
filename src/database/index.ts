@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import DBOptions from './interfaces/DBOptions'
+import Credentials from './interfaces/Credentials'
 
 export default class Database {
-  async connect ({ username, password, name }: DBOptions) {
+  async connect ({ username, password, name }: Credentials) {
     try {
       const call = mongoose.connect(
         `mongodb+srv://${username}:${password}@cluster0.ssxoo.mongodb.net/${name}?retryWrites=true&w=majority`,
