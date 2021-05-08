@@ -1,4 +1,4 @@
-export default interface DBOptions {
+export default interface Credentials {
   username: string;
   password: string;
   name: string;
