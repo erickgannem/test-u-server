@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import IStudent from '../interfaces/IStudent'
+import Student from '../interfaces/Student'
 
 const { Types } = Schema
 const { String, Boolean, Mixed } = Types
@@ -35,4 +35,4 @@ const studentSchema = new Schema({
   } // Must specify type
 })
 
-export default model<IStudent>('student', studentSchema)
+export default model<Student>('student', studentSchema)

@@ -1,26 +1,23 @@
+import dotenv from 'dotenv'
+
 import Database from '../../src/database'
-import Credentials from '../../src/database/interfaces/Credentials'
 
 describe('Database', () => {
-  const { connect } = new Database()
+  const { connect, disconnect } = new Database()
+  const { DB_NAME, DB_PASSWORD, DB_USER } = process.env
 
-  test('should fail with invalid credentials', async () => {
-    const mockCredentials: Credentials = {
-      name: 'database',
-      username: 'user',
-      password: '123'
-    }
-
-    await expect(connect(mockCredentials)).rejects.toMatchObject({ code: 8000 })
+  beforeAll(() => {
+    dotenv.config({})
   })
 
-  // test('should pass with valid credentials', async () => {
-  //   const { DB_NAME, DB_USER, DB_PASSWORD } = process.env
-
-  //   const validCredentials: Credentials = {
-  //     name: DB_NAME,
-  //     username: DB_USER,
-  //     password: DB_PASSWORD
-  //   }
-  // })
+  beforeEach(async () => {
+    await connect({
+      username: DB_USER,
+      password: DB_PASSWORD,
+      name: DB_NAME
+    })
+  })
+  afterEach(async () => {
+    await disconnect()
+  })
 })

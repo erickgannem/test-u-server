@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export default interface IStudent extends mongoose.Document {
+export default interface Student extends mongoose.Document {
   name: {
     type: string;
     required: boolean;
