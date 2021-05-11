@@ -5,11 +5,11 @@ import Question from './Question'
 
 export default interface Exam extends mongoose.Document {
   subject: {
-    type: Subject,
+    type: Subject
     ref: string
   },
   questions: {
-    type: Question[],
+    type: Question[]
     ref: string
   }
 }
