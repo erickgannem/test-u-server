@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 import Student from '../interfaces/Student'
 
 const { Types } = Schema
-const { String, Boolean, Mixed } = Types
+const { String, Boolean, ObjectId } = Types
 
 const studentSchema = new Schema({
   name: {
@@ -30,9 +30,10 @@ const studentSchema = new Schema({
     default: false
   },
   appliedExams: {
-    type: Mixed,
-    default: []
-  } // Must specify type
+    type: [ObjectId],
+    ref: 'AppliedExam'
+  }
+
 })
 
 export default model<Student>('student', studentSchema)

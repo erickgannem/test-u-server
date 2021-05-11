@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+import AppliedExam from './AppliedExam'
 export default interface Student extends mongoose.Document {
   name: {
     type: string
@@ -26,7 +27,7 @@ export default interface Student extends mongoose.Document {
     default: boolean
   },
   appliedExams: {
-    type: any
-    default: Array<any>
-  } // Must specify type
+    type: Array<AppliedExam>
+    ref: string
+  }
 }
