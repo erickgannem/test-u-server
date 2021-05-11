@@ -36,4 +36,4 @@ const studentSchema = new Schema({
 
 })
 
-export default model<Student>('student', studentSchema)
+export default model<Student>('Student', studentSchema)

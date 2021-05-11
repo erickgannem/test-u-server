@@ -10,9 +10,10 @@ const examSchema = new Schema({
     type: ObjectId,
     ref: 'Subject'
   },
-  questions: [
-    { type: ObjectId, ref: 'Question' }
-  ]
+  questions: {
+    type: [ObjectId],
+    ref: 'Question'
+  }
 })
 
 export default model<Exam>('Exam', examSchema)
